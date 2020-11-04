@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main_class{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#landing_jumbotron{
+  text-align: center;
+}
+
+.form_class{
+  margin-top: 100px;
+  padding:10%;
+  
+}
+
+.question_main{
+  margin-left: 20%;
+  margin-right: 20%;
+
+
+}
+
+.question_header{
+  background-color: lightcoral;
+}
+
+.answer_div{
+  background-color: lightblue;
+  height: 50px;
+  margin:5px;
+  padding:15px;
+  border-radius: 15px;
+  /* border-style: solid; */
+  /* border-color: gray; */
+}
+
+.answer_div:hover{
+  background-color:lightgreen;
+  height: 50px;
+
+}
+
+.correct_answer{
+  background-color: lightgreen;
+  height: 50px;
+  margin:5px;
+  padding:15px;
+  border-radius: 15px;
+  /* border-style: solid; */
+  /* border-color: gray; */
+}
+
+.wrong_answer{
+  background-color: red;
+  height: 50px;
+  margin:5px;
+  padding:15px;
+  border-radius: 15px;
+  /* border-style: solid; */
+  /* border-color: gray; */
+}
