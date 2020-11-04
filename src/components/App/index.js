@@ -8,6 +8,7 @@ import Signin from '../Signin';
 import Home from '../Home';
 import Quiz from '../Quiz';
 import Question from '../Question';
+import Result from '../Result';
 
  
 import * as ROUTES from '../../constants/routes';
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path={ROUTES.HOME} component={Home} />
             <Route path={"/quizs/:quiz_id"} component={Quiz} />
             <Route path={ROUTES.QUESTIONS} component={Question} />
+            <Route path={ROUTES.RESULT} component={Result} />
 
               {/* 
 

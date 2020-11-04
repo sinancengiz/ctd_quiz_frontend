@@ -39,9 +39,6 @@ class Quiz extends React.Component {
   }
  
 
-
-
-
    render() {
 
     return (
