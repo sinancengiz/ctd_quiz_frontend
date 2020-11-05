@@ -73,3 +73,20 @@ code {
   /* border-style: solid; */
   /* border-color: gray; */
 }
+
+
+.quiz_list_class{
+  background-color: lightblue;
+  width: 400px;
+  margin:40px;
+  border-style: solid;
+  border-radius: 10px;
+  padding:10px;
+}
+
+.quizes_main_div{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 100px;
+  padding-right: 100px;
+}

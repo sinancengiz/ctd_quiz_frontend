@@ -14,7 +14,7 @@ class Signup extends React.Component {
           auth_token:"",
           email:"",
           password:"",
-          password_conformation:"",  
+          password_confirmation:"",  
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -26,22 +26,17 @@ class Signup extends React.Component {
     
     async handleSubmit(event) {
       event.preventDefault();
-      const { name, email, password ,password_conformation} = this.state;
+      const { name, email, password ,password_confirmation} = this.state;
         // POST request using fetch with async/await
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name:name, email: email, password:password, password_conformation: password_conformation})
+            body: JSON.stringify({ name:name, email: email, password:password, password_confirmation: password_confirmation})
         };
         const response = await fetch('http://localhost:3000/signup', requestOptions);
         const data = await response.json();
-        // this.setState({
-        //   auth_token: data.auth_token,
-          
-        // });
-        
-      
-      this.props.history.push('/home');
+  
+        this.props.history.push(ROUTES.SIGN_IN);
     }
 
   render() {
@@ -49,26 +44,23 @@ class Signup extends React.Component {
     return (
             <div className={"main_class"} >
                 <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form.Label>Signup Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Username" name="name" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name="email" onChange={this.handleChange}/>
+                    <Form.Control type="email" placeholder="Email Adress" name="email" onChange={this.handleChange}/>
                     <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control type="password" placeholder="Password Confirmation" name="password_conformation" onChange={this.handleChange}/>
+                    <Form.Control type="password" placeholder="Password Confirmation" name="password_confirmation" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Button variant="dark" type="submit">

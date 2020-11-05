@@ -9,7 +9,11 @@ import Home from '../Home';
 import Quiz from '../Quiz';
 import Question from '../Question';
 import Result from '../Result';
-
+import Admin from "../Admin";
+import NewQuiz from "../NewQuiz";
+import EditQuiz from "../EditQuiz"
+import NewQuestion from "../NewQuestion"
+import EditQuestion from "../EditQuestion"
  
 import * as ROUTES from '../../constants/routes';
 import { instanceOf } from 'prop-types';
@@ -46,24 +50,18 @@ class App extends React.Component {
             <div id="app_div" >
             <Navigation />
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_IN} component={Signin} />
-            <Route path={ROUTES.SIGN_UP} component={Signup} />
-            <Route path={ROUTES.HOME} component={Home} />
-            <Route path={"/quizs/:quiz_id"} component={Quiz} />
-            <Route path={ROUTES.QUESTIONS} component={Question} />
-            <Route path={ROUTES.RESULT} component={Result} />
+            <Route exact path={ROUTES.SIGN_IN} component={Signin} />
+            <Route exact path={ROUTES.SIGN_UP} component={Signup} />
+            <Route exact path={ROUTES.HOME} component={Home} />
+            <Route exact path={"/quizs/:quiz_id"} component={Quiz} />
+            <Route exact path={ROUTES.QUESTIONS} component={Question} />
+            <Route exact path={ROUTES.RESULT} component={Result} />
+            <Route exact path={ROUTES.ADMIN} component={Admin} />
+            <Route exact path={ROUTES.NEWQUIZ} component={NewQuiz}/>
+            <Route exact path={ROUTES.EDITQUIZ} component={EditQuiz}/>
+            <Route exact path={ROUTES.NEWQUESTION} component={NewQuestion}/>
+            <Route exact path={ROUTES.EDITQUESTION} component={EditQuestion}/>
 
-              {/* 
-
-              
-              
-              
-              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-
-              <Route path={ROUTES.HOME} render={(props) => <HomePage{...props} authUser = {authUser}/>} />
-
-              <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-              <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
             </div>
           </Router>
       </UserProvider>

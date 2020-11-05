@@ -57,7 +57,7 @@ class Quiz extends React.Component {
                                 {this.state.user.auth_token}
                             </p>
                             <p>
-                                <Button variant="secondary" href={ROUTES.QUESTIONS}>Start Quiz</Button>
+                                <Button variant="secondary" href={`/api/v1/quizs/${this.props.match.params.quiz_id}/questions`}>Start Quiz</Button>
                             </p>
 
                         </Jumbotron>

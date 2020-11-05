@@ -5,6 +5,7 @@ import {UserConsumer} from '../Context'
 
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
+import { Redirect } from 'react-router-dom'
 
 
 class Home extends React.Component {
@@ -23,11 +24,16 @@ class Home extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    if (!this.state.user) {
+      return (
+          <Redirect to="/" />
+      )
+  }
 
     var url = "http://localhost:3000/api/v1/quizs";
     const token = 'Bearer ' + this.state.user.auth_token;
-    fetch(url, {
+    await fetch(url, {
       headers: {
         Authorization: token
       }
@@ -43,21 +49,31 @@ class Home extends React.Component {
 
 
    render() {
+
+    if (!this.state.user) {
+      return (
+          <Redirect to="/" />
+      )
+  }
+
     let quizes = this.state.quizes;
     let show_quizes = [];
     if (quizes.length > 0) {
       for (let i = 0; i < quizes.length; i++){
           show_quizes.push(
-          // <Row>
-          //   <h2>{quizes[i].title}</h2>
-          //   <p>{quizes[i].description}</p>
-          //   <Button>Take Quiz</Button>
-          // </Row>
-            <ListGroup.Item><Nav.Link href={"/quizs/"+quizes[i].id}>{quizes[i].title}</Nav.Link></ListGroup.Item>
+            // <ListGroup.Item><Nav.Link href={`/quizs/${quizes[i].id}`}>{quizes[i].title}</Nav.Link></ListGroup.Item>
+          <Button href={`/quizs/${quizes[i].id}`} variant="success">{quizes[i].title}</Button>
           )
       }
     }
-    
+
+    let user = this.state.user;
+    let admin_button = [];
+    if (user.role == "ADMIN") {
+        admin_button.push(
+            <Button href={ROUTES.ADMIN}> You are an Admin Go to Admin Page</Button>
+          )
+    }
 
 
     return (
@@ -73,7 +89,10 @@ class Home extends React.Component {
                                 This is home page.
                             </p>
                             <p>
-                                {this.state.user.auth_token}
+                                {this.state.user ? this.state.user.auth_token : "loading"}
+                            </p>
+                            <p>
+                                {admin_button}
                             </p>
                             <p>
                                 {this.state.quizes[0] ? this.state.quizes[0].title : "loading"}

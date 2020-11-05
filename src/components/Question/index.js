@@ -37,7 +37,7 @@ class Question extends React.Component {
 
   async componentDidMount() {
     const token = 'Bearer ' + this.state.user.auth_token;
-    const response = await fetch(`http://localhost:3000/api/v1/quizs/1/questions`, {
+    const response = await fetch(`http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}/questions`, {
               headers: {
                 Authorization: token
               }
@@ -128,6 +128,10 @@ handleFinishClicked(){
                     <Answer id={3} answer_style = {this.state.answer_style[3]} answer_clicked={this.state.answer_clicked} answer={question.answer_4} handleAnswerClicked = {this.handleAnswerClicked} c_answer={question.correct_answer}></Answer>
                 </div>
 
+            )
+          }else{
+            current_question.push(
+              <h2>There is no question in this quiz, log in as Admin to add questions</h2>
             )
           }
 
