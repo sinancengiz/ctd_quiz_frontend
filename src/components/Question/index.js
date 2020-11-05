@@ -147,15 +147,6 @@ handleFinishClicked(){
                           {this.state.quiz_finished == false ?
                           <div>
                           <Jumbotron id={"landing_jumbotron"}>
-                          <h1>This is Question Page</h1>
-                          <p>
-                              Questions.
-                          </p>
-                          <p>
-                              {this.state.user.auth_token}
-                          </p>
-                          <p>
-                          </p>
 
                           </Jumbotron>
                           {current_question }

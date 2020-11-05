@@ -7,6 +7,22 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom'
 
+const landing_jumbotron = {
+  
+  // backgroundImage: `url(${sun_image})`,
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  height:"400px",
+  textAlign:"center",
+  padding:"150px"
+};
+
+const quiz_button = {
+  margin:"10px",
+  width:"250px",
+  hieght:"250px",
+}
 
 class Home extends React.Component {
 
@@ -62,7 +78,7 @@ class Home extends React.Component {
       for (let i = 0; i < quizes.length; i++){
           show_quizes.push(
             // <ListGroup.Item><Nav.Link href={`/quizs/${quizes[i].id}`}>{quizes[i].title}</Nav.Link></ListGroup.Item>
-          <Button href={`/quizs/${quizes[i].id}`} variant="success">{quizes[i].title}</Button>
+          <Button style={quiz_button}  href={`/quizs/${quizes[i].id}`} variant="success">{quizes[i].title}</Button>
           )
       }
     }
@@ -83,26 +99,19 @@ class Home extends React.Component {
 
             return (
                         <div className={"main_class"}>
-                        <Jumbotron id={"landing_jumbotron"}>
-                            <h1>Home Page</h1>
+                        <Jumbotron  style={landing_jumbotron}>
+                            <h1>Welcome {this.state.user.username}</h1>
                             <p>
-                                This is home page.
-                            </p>
-                            <p>
-                                {this.state.user ? this.state.user.auth_token : "loading"}
+                                This is your home page. Below you can find quizes to test your skills.
                             </p>
                             <p>
                                 {admin_button}
                             </p>
-                            <p>
-                                {this.state.quizes[0] ? this.state.quizes[0].title : "loading"}
-                                {this.state.quizes[0] ? this.state.quizes[0].description : "loading"}
-                            </p>
 
                         </Jumbotron>
-                        <ListGroup>
+
                             {show_quizes}
-                        </ListGroup>
+
                         
                     </div>
                 );

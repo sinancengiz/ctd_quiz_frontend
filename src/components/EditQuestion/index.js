@@ -4,6 +4,13 @@ import { Form, Button} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
+}
 
 class EditQuestion extends React.Component {
 
@@ -93,7 +100,7 @@ handleDelete(id){
     return (
             <div className={"main_class"}>
                 
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form style={form_style }  onSubmit={this.handleSubmit} >
                 <Form.Label>Edit Question Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control as="textarea" rows={3} value={this.state.question} name="question" onChange={this.handleChange} />
@@ -117,9 +124,10 @@ handleDelete(id){
                 <Button variant="dark" type="submit">
                     Edit Question
                 </Button>
+                <Button onClick={this.handleDelete} variant="danger">Delete Question</Button>
                 </Form>
 
-                <Button onClick={this.handleDelete} variant="danger">Delete Question</Button>
+                
 
             </div>
 

@@ -4,6 +4,19 @@ import { Form, Button} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const main_div = {
+  paddingTop:"5%",
+  paddingLeft:"10%",
+  paddingRight:"10%",
+}
+
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
+}
 
 class Signin extends React.Component {
 
@@ -65,9 +78,9 @@ async handleSubmit(event) {
   render() {
 
     return (
-            <div className={"main_class"}>
+            <div style={main_div}>
               
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form  style={form_style } onSubmit={this.handleSubmit} >
                 <Form.Label>Login Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control type="email" placeholder="Your Email" name="email" onChange={this.handleChange} />

@@ -4,6 +4,13 @@ import { Form, Button} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
+}
 
 class NewQuestion extends React.Component {
 
@@ -57,13 +64,13 @@ async handleSubmit(event) {
     return (
             <div className={"main_class"}>
               
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form style={form_style } onSubmit={this.handleSubmit} >
                 <Form.Label>New Question Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control as="textarea" rows={3} placeholder="Question" name="question" onChange={this.handleChange} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control as="textarea" rows={3} placeholder="Correct Answer" name="correct_answer" onChange={this.handleChange} />
+                    <Form.Control as="textarea" rows={3} placeholder="Correct Answer - (Must be identical with one if the following answers)" name="correct_answer" onChange={this.handleChange} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control as="textarea" rows={3} placeholder="Answer A" name="answer_1" onChange={this.handleChange} />

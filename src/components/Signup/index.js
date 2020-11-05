@@ -2,6 +2,19 @@ import React from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Form, Button} from 'react-bootstrap';
 
+const main_div = {
+  paddingTop:"5%",
+  paddingLeft:"10%",
+  paddingRight:"10%",
+}
+
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
+}
 
 class Signup extends React.Component {
 
@@ -42,8 +55,8 @@ class Signup extends React.Component {
   render() {
 
     return (
-            <div className={"main_class"} >
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+            <div style={main_div}>
+                <Form style={form_style }onSubmit={this.handleSubmit} >
                 <Form.Label>Signup Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control type="text" placeholder="Username" name="name" onChange={this.handleChange}/>

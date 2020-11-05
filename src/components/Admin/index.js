@@ -2,10 +2,30 @@ import React from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
-
+import { Redirect } from 'react-router-dom'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const main_jumbotron = {
+
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  height:"300px",
+  textAlign:"center",
+  padding:"100px"
+};
+
+const quiz_div = {
+  backgroundColor:"lightgreen",
+  height:"150px",
+  width:"300px",
+  borderRadius:"10px",
+  padding:"20px",
+  margin:"20px",
+  textAlign:"center",
+
+};
 
 class Admin extends React.Component {
 
@@ -39,15 +59,22 @@ class Admin extends React.Component {
   }
  
    render() {
+
+    if (!this.state.user) {
+      return (
+          <Redirect to="/" />
+      )
+  }
+
     let quizes = this.state.quizes;
     let show_quizes = [];
     if (quizes.length > 0) {
       for (let i = 0; i < quizes.length; i++){
           show_quizes.push(
 
-                <div className="quiz_list_class">
+                <div style={quiz_div}>
                     <h1>{quizes[i].title}</h1>
-                    <Button href={`/quizs/${quizes[i].id}/edit`} variant="success">Show</Button>
+                    <Button href={`/quizs/${quizes[i].id}/edit`} variant="success">Edit</Button>
                 </div>
           )
       }
@@ -62,28 +89,19 @@ class Admin extends React.Component {
 
             return (
                         <div className={"main_class"}>
-                        <Jumbotron id={"landing_jumbotron"}>
-                            <h1>Admin Page</h1>
-                            <p>
-                                Welcome {this.state.user ? this.state.user.username : "loading"}
-                            </p>
-                            <p>
-                                {this.state.user ? this.state.user.auth_token : "loading"}
-                            </p>
-                            <p>
-                                {this.state.quizes[0] ? this.state.quizes[0].title : "loading"}
-                                {this.state.quizes[0] ? this.state.quizes[0].description : "loading"}
-                            </p>
-
+                        <Jumbotron style={main_jumbotron}>
+                            <h1>Hi {this.state.user ? this.state.user.username : "loading"}</h1>
+                            <h2>In this Admin page you can add new quizes and update them!</h2>
+                            <div>
+                              <Button href={ROUTES.NEWQUIZ} variant="dark">Add New Quiz</Button>
+                            </div>
                         </Jumbotron>
                         
                         <div class={"quizes_main_div"}>
                         {show_quizes}
                        
                         </div>
-                        <div>
-                        <Button href={ROUTES.NEWQUIZ} variant="primary">Add New Quiz</Button>
-                        </div>
+
 
                        
                     </div>

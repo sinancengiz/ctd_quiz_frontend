@@ -5,6 +5,15 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
 
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
+}
+
+
 class NewQuiz extends React.Component {
 
   static propTypes = {
@@ -53,7 +62,7 @@ async handleSubmit(event) {
     return (
             <div className={"main_class"}>
               
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form style={form_style } onSubmit={this.handleSubmit} >
                 <Form.Label>New Quiz Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control type="text" placeholder="Title" name="title" onChange={this.handleChange} />

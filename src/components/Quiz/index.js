@@ -6,6 +6,22 @@ import {UserConsumer} from '../Context'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const landing_jumbotron = {
+  
+  // backgroundImage: `url(${sun_image})`,
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  height:"400px",
+  textAlign:"center",
+  padding:"150px"
+};
+
+const quiz_button = {
+  margin:"10px",
+  width:"250px",
+  hieght:"250px",
+}
 
 class Quiz extends React.Component {
 
@@ -19,13 +35,13 @@ class Quiz extends React.Component {
     const { cookies } = props;
     this.state = {
       user: cookies.get('user'),
-      quizes: [],
+      quiz: [],
     };
   }
 
   componentDidMount() {
 
-    var url = "http://localhost:3000/api/v1/quizs";
+    var url = `http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}`;
     const token = 'Bearer ' + this.state.user.auth_token;
     fetch(url, {
       headers: {
@@ -33,7 +49,7 @@ class Quiz extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(json => this.setState({ quizes:json }));
+      .then(json => this.setState({ quiz:json }));
     
 
   }
@@ -48,13 +64,10 @@ class Quiz extends React.Component {
 
             return (
                         <div className={"main_class"}>
-                        <Jumbotron id={"landing_jumbotron"}>
-                            <h1>This is quiz Page</h1>
+                        <Jumbotron style={landing_jumbotron}>
+                            <h1>{this.state.quiz.title}</h1>
                             <p>
-                                Quizpage.
-                            </p>
-                            <p>
-                                {this.state.user.auth_token}
+                                {this.state.quiz.description}
                             </p>
                             <p>
                                 <Button variant="secondary" href={`/api/v1/quizs/${this.props.match.params.quiz_id}/questions`}>Start Quiz</Button>

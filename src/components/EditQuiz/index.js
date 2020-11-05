@@ -1,9 +1,26 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Form, Button} from 'react-bootstrap';
+import { Form, Button, Table} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const form_style = {
+  paddingTop:"5%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"5%",
+  backgroundColor:"lightblue",
+  marginBottom:"5%"
+};
+
+const questions_div = {
+  paddingTop:"5%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"5%",
+
+  backgroundColor:"lightblue",
+}
 
 class EditQuiz extends React.Component {
 
@@ -95,10 +112,15 @@ handleDelete(id){
     if (questions.length > 0) {
       for (let i = 0; i < questions.length; i++){
         show_questions.push(
-                <div>
-                     <h1>{questions[i].question}</h1>
-                    <Button href={`/quizs/${this.state.quiz_id}/questions/${questions[i].id}`} variant="success">Edit</Button>
-                </div>
+            <tr >
+              <td>{questions[i].id}</td>
+              <td>{questions[i].question}</td>
+              <td><Button href={`/quizs/${this.state.quiz_id}/questions/${questions[i].id}`} variant="success">Edit</Button></td>
+            </tr>
+                // <div>
+                //      <h1>{questions[i].question}</h1>
+                //     <Button href={`/quizs/${this.state.quiz_id}/questions/${questions[i].id}`} variant="success">Edit</Button>
+                // </div>
           )
       }
     }
@@ -107,7 +129,7 @@ handleDelete(id){
     return (
             <div className={"main_class"}>
                 
-                <Form className={"form_class"} onSubmit={this.handleSubmit} >
+                <Form style={form_style } onSubmit={this.handleSubmit} >
                 
                 <Form.Label>Edit Quiz Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
@@ -120,13 +142,32 @@ handleDelete(id){
                 <Button variant="dark" type="submit">
                     Edit Quiz
                 </Button>
-                </Form>
                 <Button onClick={this.handleDelete} variant="danger">Delete Quiz</Button>
+                </Form>
+                
 
 
-                <div className={"questions_div"}>
-                <Button href={`/quizs/${this.state.quiz_id}/questions/`} variant="success">Add New Question</Button>
-                    {show_questions }
+                <div style={questions_div }>
+                <Table striped bordered hover>
+                              <thead>
+                                <tr>
+                                <th colSpan="4">Questions</th>
+                                </tr>
+                            </thead>
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Question</th>
+                                <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {show_questions }
+                            </tbody>
+                            </Table>
+                    <Button href={`/quizs/${this.state.quiz_id}/questions/`} variant="success">Add New Question</Button>
+
+                    
                 </div>
             </div>
 

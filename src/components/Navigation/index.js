@@ -29,38 +29,29 @@ class Navigation extends React.Component {
   }
 
   render() {
-    let nav_bar=[]
-    if(!this.state.user){
-      console.log("user not exist")
-    }else{
-      if(this.state.user.role == "ADMIN"){
-        console.log("user eisxt and admin")
-
+    const { cookies } = this.props;
+    let logout = [];
+    if(cookies.get('user')){
+      if(cookies.get('user').auth_token){
+        logout.push(
+          <Navbar.Text>
+          <Button variant="dark" onClick={this.onLogout}>Log Out</Button>
+        </Navbar.Text>  
+        )
       }else{
-        console.log("user eisxt not admin")
+        logout.push(<p></p>)
       }
-      
+
+    }else{
+      logout.push(<p></p>)
     }
 
-    const { cookies } = this.props;
     return (
         <Navbar>
         <Navbar.Brand href={ROUTES.HOME}>CTD Quiz App</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-        { cookies.user && cookies.user.role == "ADMIN" ?  
-                      <Navbar.Text>
-                      <Button href={ROUTES.ADMIN}>Admin</Button>
-                    </Navbar.Text>         :
-                    <p></p>
-            }
-
-            { !cookies.user ?  
-                      <Navbar.Text>
-                      <Button onClick={this.onLogout}>Log Out</Button>
-                    </Navbar.Text>         :
-                    <p></p>
-            }
+            {logout}
 
         </Navbar.Collapse>
       </Navbar>

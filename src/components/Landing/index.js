@@ -2,6 +2,21 @@ import React from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Jumbotron, Button} from 'react-bootstrap';
 
+const landing_jumbotron = {
+  
+  // backgroundImage: `url(${sun_image})`,
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  height:"600px",
+  textAlign:"center",
+  padding:"200px"
+};
+
+const landing_button = {
+  margin:"10px",
+}
+
 
 class Landing extends React.Component {
 
@@ -9,14 +24,14 @@ class Landing extends React.Component {
 
     return (
             <div className={"main_class"}>
-                <Jumbotron id={"landing_jumbotron"}>
-                    <h1>CTD Quiz APP!</h1>
+                <Jumbotron style={landing_jumbotron}>
+                    <h1>CTD Quiz App</h1>
                     <p>
-                        This is a simple app to test knowledge.
+                        Code The Dream Quiz App is designed to help students to test thier knowledge!
                     </p>
                     <p>
-                        <Button href={ROUTES.SIGN_IN} variant="dark">Sign In</Button>
-                        <Button href={ROUTES.SIGN_UP} variant="dark">Sign Up</Button>
+                        <Button style={landing_button} href={ROUTES.SIGN_IN} variant="dark">Sign In</Button>
+                        <Button style={landing_button}  href={ROUTES.SIGN_UP} variant="dark">Sign Up</Button>
                     </p>
 
                 </Jumbotron>

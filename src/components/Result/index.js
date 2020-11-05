@@ -6,6 +6,15 @@ import {UserConsumer} from '../Context'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const landing_jumbotron = {
+  
+  // backgroundImage: `url(${sun_image})`,
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  textAlign:"center",
+  padding:"50px"
+};
 
 class Result extends React.Component {
 
@@ -50,7 +59,7 @@ class Result extends React.Component {
             return (
                     <div className={"main_class"}>
 
-                        <Jumbotron>
+                        <Jumbotron style={landing_jumbotron} >
                             <h2>Quiz Result - Great Job!</h2>
                         </Jumbotron>
                             <Table striped bordered hover>
