@@ -60,7 +60,7 @@ class Result extends React.Component {
                     <div className={"main_class"}>
 
                         <Jumbotron style={landing_jumbotron} >
-                            <h2>Quiz Result - Great Job!</h2>
+                        <h2>Quiz Result - Great Job! You Scored {this.props.quiz_score}/100</h2>
                         </Jumbotron>
                             <Table striped bordered hover>
                             <thead>

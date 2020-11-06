@@ -7,8 +7,15 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import Answer from "../Answer";
 import Result from "../Result"
+import Chart from "../ScoreChart"
 
-
+const chartJumbotron = {
+  backgroundColor:"lightblue",
+  color:"white",
+  height:"300px",
+  textAlign:"center",
+  paddingTop:"0px"
+}
 
 class Question extends React.Component {
 
@@ -29,6 +36,8 @@ class Question extends React.Component {
       question_answered:false,
       results:[],
       quiz_finished:false,
+      quiz_score:0,
+  
     };
     this.handleAnswerClicked = this.handleAnswerClicked.bind(this);
     this.handleNextClicked = this.handleNextClicked.bind(this);
@@ -46,10 +55,8 @@ class Question extends React.Component {
     this.setState({ questions: json });
   }
 
-handleAnswerClicked (answer, c_answer, id){
-    console.log(answer)
-    console.log(c_answer)
-    this.setState({answer_clicked:true})
+async handleAnswerClicked (answer, c_answer, id){
+  this.setState({answer_clicked:true})
     if(this.state.answer_clicked == false){
         if(answer == c_answer){
 
@@ -61,9 +68,9 @@ handleAnswerClicked (answer, c_answer, id){
             // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
             answer_style[id] = item;
             // 5. Set the state to our new copy
-            this.setState({answer_style});
+            await this.setState({answer_style});
 
-            this.setState({
+            await this.setState({
               results: this.state.results.concat('correct')
             })
         }
@@ -76,14 +83,23 @@ handleAnswerClicked (answer, c_answer, id){
             // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
             answer_style[id] = item;
             // 5. Set the state to our new copy
-            this.setState({answer_style});
+            await this.setState({answer_style});
 
-            this.setState({
+            await this.setState({
               results: this.state.results.concat('wrong')
             })
 
         }
+
     }
+
+    const corrects_list= this.state.results.filter(corrects => corrects == "correct");
+    let quiz_score = (corrects_list.length / this.state.results.length) * 100
+
+    console.log(parseInt(quiz_score))
+    this.setState({
+      quiz_score : parseInt(quiz_score)
+    })
 }
 
 handleNextClicked (){
@@ -146,9 +162,12 @@ handleFinishClicked(){
                         <div className={"main_class"}>
                           {this.state.quiz_finished == false ?
                           <div>
-                          <Jumbotron id={"landing_jumbotron"}>
+                          <Jumbotron style={chartJumbotron}>
 
+                                  <Chart score={this.state.quiz_score}></Chart>
+                            
                           </Jumbotron>
+
                           {current_question }
                           <Row>
                             <Col xs={9}>
@@ -170,7 +189,7 @@ handleFinishClicked(){
 
                           :
 
-                          <Result results = {this.state.results} questions = {this.state.questions}></Result>
+                          <Result results = {this.state.results} questions = {this.state.questions} quiz_score={this.state.quiz_score}></Result>
                         
                         
                         

@@ -41,9 +41,16 @@ class Admin extends React.Component {
       user: cookies.get('user'),
       quizes: []
     };
+    
   }
 
   async componentDidMount() {
+
+    if (!this.state.user ) {
+      return (
+          <Redirect to="/" />
+      )
+  }
 
     var url = "http://localhost:3000/api/v1/quizs";
     const token = 'Bearer ' + this.state.user.auth_token;
@@ -56,13 +63,16 @@ class Admin extends React.Component {
       .then(json => this.setState({ quizes:json}));
     
       
+
   }
- 
+
+
+
    render() {
 
-    if (!this.state.user) {
+    if (!this.state.user || this.state.user.role != "ADMIN") {
       return (
-          <Redirect to="/" />
+          <Redirect to="/home" />
       )
   }
 

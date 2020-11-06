@@ -3,6 +3,7 @@ import * as ROUTES from '../../constants/routes';
 import { Form, Button, Table} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
+import { Redirect } from 'react-router-dom'
 
 const form_style = {
   paddingTop:"5%",
@@ -107,6 +108,12 @@ handleDelete(id){
   }
 
   render() {
+    if (!this.state.user || this.state.user.role != "ADMIN") {
+      return (
+          <Redirect to="/home" />
+      )
+  }
+  
     let questions = this.state.questions;
     let show_questions = [];
     if (questions.length > 0) {

@@ -3,7 +3,7 @@ import * as ROUTES from '../../constants/routes';
 import { Form, Button} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-
+import { Redirect } from 'react-router-dom'
 
 const form_style = {
   paddingTop:"10%",
@@ -59,6 +59,11 @@ async handleSubmit(event) {
 
   render() {
 
+    if (!this.state.user || this.state.user.role != "ADMIN") {
+      return (
+          <Redirect to="/home" />
+      )
+  }
     return (
             <div className={"main_class"}>
               

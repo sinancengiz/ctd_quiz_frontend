@@ -59,21 +59,21 @@ class Signup extends React.Component {
                 <Form style={form_style }onSubmit={this.handleSubmit} >
                 <Form.Label>Signup Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="text" placeholder="Username" name="name" onChange={this.handleChange}/>
+                    <Form.Control required type="text" placeholder="Username" name="name" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control type="email" placeholder="Email Adress" name="email" onChange={this.handleChange}/>
-                    <Form.Text className="text-muted">
+                    <Form.Text required className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
+                    <Form.Control required type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password Confirmation" name="password_confirmation" onChange={this.handleChange}/>
+                    <Form.Control required type="password" placeholder="Password Confirmation" name="password_confirmation" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Button variant="dark" type="submit">
