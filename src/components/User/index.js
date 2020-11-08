@@ -156,8 +156,6 @@ handleDelete(id){
       }
     }
 
-    console.log(this.state.max_test_results.values())
-    console.log(this.state.user_info)
 
     return (
             <div className={"main_class"}>
@@ -172,9 +170,9 @@ handleDelete(id){
                       <Col >
                       <Plot
                             data={[
-                                {type: 'bar', x: [1,4,5], y: [66,50,75]},
+                                {type: 'bar', x: Object.keys(this.state.max_test_results), y: Object.values(this.state.max_test_results)},
                             ]}
-                            layout={ {width: 1000, height: 500, title: 'A Fancy Plot'} }
+                            layout={ {width: 1000, height: 500, title: 'Max Quiz Scores'} }
                           />
                       </Col>
                     

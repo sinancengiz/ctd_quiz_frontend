@@ -37,6 +37,7 @@ class Question extends React.Component {
       results:[],
       quiz_finished:false,
       quiz_score:0,
+      quiz:""
   
     };
     this.handleAnswerClicked = this.handleAnswerClicked.bind(this);
@@ -53,6 +54,15 @@ class Question extends React.Component {
             });
     const json = await response.json();
     this.setState({ questions: json });
+
+    const quiz_response = await fetch(`http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}`, {
+          headers: {
+            Authorization: token
+          }
+        });
+    const quiz_json = await quiz_response.json();
+    this.setState({ quiz: quiz_json });
+
   }
 
 async handleAnswerClicked (answer, c_answer, id){
@@ -128,14 +138,14 @@ handleFinishClicked(){
     this.setState({answer_clicked:false})
     this.setState({quiz_finished:true})
 
-    const { user, quiz_score } = this.state;
+    const { user, quiz_score, quiz } = this.state;
     var post_result_url = `http://localhost:3000/api/v1/users/${user.user_id}/results`;
     const token = 'Bearer ' + this.state.user.auth_token;
     // POST request using fetch 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' , Authorization: token},
-        body: JSON.stringify({ user_id: user.user_id, score:quiz_score, quiz_id:this.props.match.params.quiz_id ,quiz_name:"new test name quiz"})
+        body: JSON.stringify({ user_id: user.user_id, score:quiz_score, quiz_id:this.props.match.params.quiz_id ,quiz_name:quiz.title})
     };
     fetch(post_result_url, requestOptions);
   }
