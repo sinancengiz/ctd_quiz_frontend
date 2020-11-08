@@ -13,7 +13,6 @@ const landing_jumbotron = {
   backgroundColor:"lightblue",
   marginTop: "50px",
   color:"white",
-  height:"400px",
   textAlign:"center",
   padding:"150px"
 };
@@ -104,9 +103,6 @@ class Home extends React.Component {
                             <p>
                                 This is your home page. Below you can find quizes to test your skills.
                             </p>
-                            <div>
-                              <Button href={ROUTES.ADMIN}> See Your Score</Button>
-                            </div>
                             <p>
                                 {admin_button}
                             </p>

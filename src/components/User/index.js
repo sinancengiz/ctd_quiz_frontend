@@ -150,7 +150,6 @@ handleDelete(id){
               <td>{user_test_results[i].id}</td>
               <td>{user_test_results[i].quiz_name}</td>
               <td>{user_test_results[i].score}</td>
-              <td><Button variant="danger">Delete</Button></td>
             </tr>
           )
       }
@@ -193,7 +192,6 @@ handleDelete(id){
                                 <th>Test Result ID</th>
                                 <th>Quiz Name</th>
                                 <th>Score</th>
-                                <th></th>
                                 </tr>
                             </thead>
                             <tbody>
