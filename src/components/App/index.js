@@ -10,6 +10,8 @@ import Quiz from '../Quiz';
 import Question from '../Question';
 import Result from '../Result';
 import Admin from "../Admin";
+import AllUsers from "../AllUsers";
+import User from "../User";
 import NewQuiz from "../NewQuiz";
 import EditQuiz from "../EditQuiz"
 import NewQuestion from "../NewQuestion"
@@ -57,6 +59,8 @@ class App extends React.Component {
             <Route exact path={ROUTES.QUESTIONS} component={Question} />
             <Route exact path={ROUTES.RESULT} component={Result} />
             <Route exact path={ROUTES.ADMIN} component={Admin} />
+            <Route exact path={ROUTES.ALLUSERS} component={AllUsers}/>
+            <Route exact path={ROUTES.USER} component={User}/>
             <Route exact path={ROUTES.NEWQUIZ} component={NewQuiz}/>
             <Route exact path={ROUTES.EDITQUIZ} component={EditQuiz}/>
             <Route exact path={ROUTES.NEWQUESTION} component={NewQuestion}/>

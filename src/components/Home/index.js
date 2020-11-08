@@ -100,10 +100,13 @@ class Home extends React.Component {
             return (
                         <div className={"main_class"}>
                         <Jumbotron  style={landing_jumbotron}>
-                            <h1>Welcome {this.state.user.username}</h1>
+                            <h1>Welcome {this.state.user.username.toUpperCase()}</h1>
                             <p>
                                 This is your home page. Below you can find quizes to test your skills.
                             </p>
+                            <div>
+                              <Button href={ROUTES.ADMIN}> See Your Score</Button>
+                            </div>
                             <p>
                                 {admin_button}
                             </p>

@@ -10,7 +10,7 @@ import Result from "../Result"
 import Chart from "../ScoreChart"
 
 const chartJumbotron = {
-  backgroundColor:"lightblue",
+  backgroundColor:"white",
   color:"white",
   height:"300px",
   textAlign:"center",
@@ -122,10 +122,22 @@ handleNextClicked (){
 }
 
 handleFinishClicked(){
+
+  
   if(this.state.answer_clicked == true){
     this.setState({answer_clicked:false})
     this.setState({quiz_finished:true})
-    // this.props.history.push("/result");
+
+    const { user, quiz_score } = this.state;
+    var post_result_url = `http://localhost:3000/api/v1/users/${user.user_id}/results`;
+    const token = 'Bearer ' + this.state.user.auth_token;
+    // POST request using fetch 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' , Authorization: token},
+        body: JSON.stringify({ user_id: user.user_id, score:quiz_score, quiz_id:this.props.match.params.quiz_id ,quiz_name:"Test quiz"})
+    };
+    fetch(post_result_url, requestOptions);
   }
 
 }
@@ -170,10 +182,10 @@ handleFinishClicked(){
 
                           {current_question }
                           <Row>
-                            <Col xs={9}>
+                            <Col xs={11}>
                             
                             </Col>
-                            <Col xs={3}>
+                            <Col xs={1}>
                             { this.state.questions.length == this.state.current_q_index +1 ?
                               <Button onClick={this.handleFinishClicked} variant="danger" >Finish</Button>
                               :

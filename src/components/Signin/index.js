@@ -69,8 +69,6 @@ async handleSubmit(event) {
     });
 
   this.handleUserChange(data)
-  console.log(this.state.auth_token)
-  console.log(this.state.user)
   this.props.history.push('/home');
 }
 

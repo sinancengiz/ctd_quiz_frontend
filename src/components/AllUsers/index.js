@@ -16,16 +16,24 @@ const main_jumbotron = {
 };
 
 const quiz_div = {
-  backgroundColor:"lightgreen",
+  backgroundColor:"yellowgreen",
   width:"300px",
   borderRadius:"10px",
   padding:"20px",
   margin:"20px",
   textAlign:"center",
-
 };
 
-class Admin extends React.Component {
+const user_secondary = {
+  display: "flex",
+  flexWrap: "wrap",
+  paddingLeft: "100px",
+  paddingRight: "100px",
+
+}
+
+
+class AllUsers extends React.Component {
 
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -37,7 +45,7 @@ class Admin extends React.Component {
     const { cookies } = props;
     this.state = {
       user: cookies.get('user'),
-      quizes: []
+      users: []
     };
     
   }
@@ -50,7 +58,7 @@ class Admin extends React.Component {
       )
   }
 
-    var url = "http://localhost:3000/api/v1/quizs";
+    var url = "http://localhost:3000/api/v1/users";
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -58,10 +66,8 @@ class Admin extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(json => this.setState({ quizes:json}));
+      .then(json => this.setState({ users:json}));
     
-      
-
   }
 
 
@@ -74,15 +80,15 @@ class Admin extends React.Component {
       )
   }
 
-    let quizes = this.state.quizes;
-    let show_quizes = [];
-    if (quizes.length > 0) {
-      for (let i = 0; i < quizes.length; i++){
-          show_quizes.push(
+    let users = this.state.users;
+    let show_users = [];
+    if (users.length > 0) {
+      for (let i = 0; i < users.length; i++){
+          show_users.push(
 
                 <div style={quiz_div}>
-                    <h1>{quizes[i].title}</h1>
-                    <Button href={`/quizs/${quizes[i].id}/edit`} variant="success">Edit</Button>
+                    <h1>{users[i].name}</h1>
+                    <Button href={`/users/${users[i].id}`} variant="primary">See Details</Button>
                 </div>
           )
       }
@@ -99,15 +105,11 @@ class Admin extends React.Component {
                         <div className={"main_class"}>
                         <Jumbotron style={main_jumbotron}>
                             <h1>Hi {this.state.user ? this.state.user.username : "loading"}</h1>
-                            <h2>In this Admin page you can add new quizes and update them!</h2>
-                            <div>
-                              <Button href={ROUTES.NEWQUIZ} variant="dark">Add New Quiz</Button>
-                              <Button href={ROUTES.ALLUSERS} variant="dark">See Students</Button>
-                            </div>
+                            <h2>See all Users below</h2>
                         </Jumbotron>
                         
-                        <div class={"quizes_main_div"}>
-                        {show_quizes}
+                        <div style={user_secondary}>
+                        {show_users}
                        
                         </div>
 
@@ -121,4 +123,4 @@ class Admin extends React.Component {
   }
 }
  
-export default withCookies(Admin);
+export default withCookies(AllUsers);
