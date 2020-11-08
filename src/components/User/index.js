@@ -23,6 +23,16 @@ const questions_div = {
   backgroundColor:"lightblue",
 }
 
+const main_jumbotron = {
+
+  backgroundColor:"lightblue",
+  marginTop: "50px",
+  color:"white",
+  textAlign:"center",
+  padding:"100px"
+};
+
+
 class User extends React.Component {
 
   static propTypes = {
@@ -40,7 +50,9 @@ class User extends React.Component {
       title:"",
       description:"",
       user_id:this.props.match.params.user_id,
-      user_info:[]
+      user_info:[],
+      user_test_results:[],
+      max_test_results:[]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -61,14 +73,23 @@ class User extends React.Component {
       .then(json => this.setState({ user_info:json}));
 
 
-      // var questions_url = `http://localhost:3000/api/v1/quizs/${this.state.quiz_id}/questions`;
-      // await fetch(questions_url, {
-      //   headers: {
-      //     Authorization: token
-      //   }
-      // })
-      //   .then(res => res.json())
-      //   .then(json => this.setState({ questions:json}));
+      var user_results_url = `http://localhost:3000/api/v1/users/${this.state.user_id}/results`;
+      await fetch(user_results_url, {
+        headers: {
+          Authorization: token
+        }
+      })
+        .then(res => res.json())
+        .then(json => this.setState({ user_test_results:json}));
+
+      var max_results_url = `http://localhost:3000/api/v1/users/${this.state.user_id}/maxresults`;
+      await fetch(max_results_url, {
+        headers: {
+          Authorization: token
+        }
+      })
+        .then(res => res.json())
+        .then(json => this.setState({ max_test_results:json}));
     
       
   }
@@ -114,73 +135,54 @@ handleDelete(id){
       )
   }
   
-    // let questions = this.state.questions;
-    // let show_questions = [];
-    // if (questions.length > 0) {
-    //   for (let i = 0; i < questions.length; i++){
-    //     show_questions.push(
-    //         <tr >
-    //           <td>{questions[i].id}</td>
-    //           <td>{questions[i].question}</td>
-    //           <td><Button href={`/quizs/${this.state.quiz_id}/questions/${questions[i].id}`} variant="success">Edit</Button></td>
-    //         </tr>
-    //             // <div>
-    //             //      <h1>{questions[i].question}</h1>
-    //             //     <Button href={`/quizs/${this.state.quiz_id}/questions/${questions[i].id}`} variant="success">Edit</Button>
-    //             // </div>
-    //       )
-    //   }
-    // }
+    let user_test_results = this.state.user_test_results;
+    let show_user_test_results = [];
+    if (user_test_results.length > 0) {
+      for (let i = 0; i < user_test_results.length; i++){
 
+        show_user_test_results.push(
+            <tr >
+              <td>{user_test_results[i].id}</td>
+              <td>{user_test_results[i].quiz_name}</td>
+              <td>{user_test_results[i].score}</td>
+              <td><Button variant="danger">Delete</Button></td>
+            </tr>
+          )
+      }
+    }
+
+    console.log(this.state.max_test_results)
     console.log(this.state.user_info)
-
 
     return (
             <div className={"main_class"}>
 
-              <Jumbotron>
+              <Jumbotron style={main_jumbotron}>
                 <h2>{this.state.user_info.id}</h2>
                 <h1>{this.state.user_info.name}</h1>
                 <h2>{this.state.user_info.email}</h2>
               </Jumbotron>
-                
-                {/* <Form style={form_style } onSubmit={this.handleSubmit} >
-                
-                <Form.Label>User Page </Form.Label>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="text" value= {this.state.title}  name="title" onChange={this.handleChange} />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control as="textarea" rows={3} value= {this.state.description} name="description" onChange={this.handleChange} />
-                </Form.Group>
-
-                <Button variant="dark" type="submit">
-                    Edit Quiz
-                </Button>
-                <Button onClick={this.handleDelete} variant="danger">Delete Quiz</Button>
-                </Form> */}
-                
-                
 
                 <div style={questions_div }>
                 <Table striped bordered hover>
                               <thead>
                                 <tr>
-                                  <th colSpan="4">Quiz Result for {this.state.user_info.name}</th>
+                                  <th colSpan="4">Quiz Results of {this.state.user_info.name}</th>
                                 </tr>
                             </thead>
                             <thead>
                                 <tr>
+                                <th>Test Result ID</th>
                                 <th>Quiz Name</th>
-                                <th>Result</th>
-                                <th>Date Submited</th>
+                                <th>Score</th>
+                                <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {/* {show_questions } */}
+                            {show_user_test_results }
                             </tbody>
                             </Table>
-                    <Button href={`/quizs/${this.state.quiz_id}/questions/`} variant="success">Add New Question</Button>
+ 
 
                     
                 </div>
