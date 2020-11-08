@@ -1,9 +1,14 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Form, Button, Table, Jumbotron} from 'react-bootstrap';
+import {  Button, Table, Jumbotron, Container, Row, Col} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom'
+
+import Plotly from "plotly.js";
+
+import createPlotlyComponent from "react-plotly.js/factory";
+const Plot = createPlotlyComponent(Plotly);
 
 const form_style = {
   paddingTop:"5%",
@@ -151,7 +156,7 @@ handleDelete(id){
       }
     }
 
-    console.log(this.state.max_test_results)
+    console.log(this.state.max_test_results.values())
     console.log(this.state.user_info)
 
     return (
@@ -162,6 +167,21 @@ handleDelete(id){
                 <h1>{this.state.user_info.name}</h1>
                 <h2>{this.state.user_info.email}</h2>
               </Jumbotron>
+              <Container>
+                    <Row>
+                      <Col >
+                      <Plot
+                            data={[
+                                {type: 'bar', x: [1,4,5], y: [66,50,75]},
+                            ]}
+                            layout={ {width: 1000, height: 500, title: 'A Fancy Plot'} }
+                          />
+                      </Col>
+                    
+
+                  </Row>
+            
+              </Container>
 
                 <div style={questions_div }>
                 <Table striped bordered hover>

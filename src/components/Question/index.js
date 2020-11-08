@@ -135,7 +135,7 @@ handleFinishClicked(){
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' , Authorization: token},
-        body: JSON.stringify({ user_id: user.user_id, score:quiz_score, quiz_id:this.props.match.params.quiz_id ,quiz_name:"Test quiz"})
+        body: JSON.stringify({ user_id: user.user_id, score:quiz_score, quiz_id:this.props.match.params.quiz_id ,quiz_name:"new test name quiz"})
     };
     fetch(post_result_url, requestOptions);
   }
