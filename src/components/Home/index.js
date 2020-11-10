@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
+import { Jumbotron, Button, Container} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
 
 import { instanceOf } from 'prop-types';
@@ -23,6 +23,10 @@ const quiz_button = {
   hieght:"250px",
 }
 
+const asigned_quiz_div_style = {
+  textAlign:"center",
+}
+
 class Home extends React.Component {
 
   static propTypes = {
@@ -36,6 +40,7 @@ class Home extends React.Component {
     this.state = {
       user: cookies.get('user'),
       quizes: [],
+      asigned_quizes:[],
     };
   }
 
@@ -56,6 +61,15 @@ class Home extends React.Component {
       .then(res => res.json())
       .then(json => this.setState({ quizes:json }));
     
+
+      var asigned_quizes_url = `http://localhost:3000/api/v1/users/${this.state.user.user_id}/asignedquizs`;
+      await fetch(asigned_quizes_url, {
+        headers: {
+          Authorization: token
+        }
+      })
+        .then(res => res.json())
+        .then(json => this.setState({ asigned_quizes:json }));
 
   }
  
@@ -80,6 +94,29 @@ class Home extends React.Component {
           <Button style={quiz_button}  href={`/quizs/${quizes[i].id}`} variant="success">{quizes[i].title}</Button>
           )
       }
+    }
+
+
+    let asigned_quizes = this.state.asigned_quizes;
+    let asigned_quiz_div = <div></div>;
+    let show_asigned_quizes = [];
+    if (asigned_quizes.length > 0) {
+      for (let i = 0; i < asigned_quizes.length; i++){
+          show_asigned_quizes.push(
+            // <ListGroup.Item><Nav.Link href={`/quizs/${quizes[i].id}`}>{quizes[i].title}</Nav.Link></ListGroup.Item>
+          <Button style={quiz_button}  href={`/quizs/${asigned_quizes[i].id}`} variant="danger">{asigned_quizes[i].quiz_name}</Button>
+          )
+      }
+    }
+    if (asigned_quizes.length > 0) {
+          asigned_quiz_div = <Container style={asigned_quiz_div_style}>
+            <h2>You have quizes to take, Lets take them!</h2>
+            {show_asigned_quizes}
+            <br>
+            </br>
+            <br>
+            </br>
+          </Container>
     }
 
     let user = this.state.user;
@@ -108,7 +145,8 @@ class Home extends React.Component {
                             </p>
 
                         </Jumbotron>
-
+                            
+                            {asigned_quiz_div}
                             {show_quizes}
 
                         
