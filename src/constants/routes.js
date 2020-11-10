@@ -6,6 +6,7 @@ export const ADMIN = '/admin';
 export const ALLUSERS= '/users';
 export const USER = '/users/:user_id';
 export const QUESTIONS = '/api/v1/quizs/:quiz_id/questions';
+export const ASIGNEDQUIZ = '/quizs/:quiz_id/asignedquiz/:asignedquiz_id';
 export const RESULT = '/result';
 export const NEWQUIZ = '/api/v1/quizs/';
 export const EDITQUIZ = '/quizs/:quiz_id/edit';

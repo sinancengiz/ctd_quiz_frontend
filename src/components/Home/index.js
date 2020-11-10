@@ -104,7 +104,7 @@ class Home extends React.Component {
       for (let i = 0; i < asigned_quizes.length; i++){
           show_asigned_quizes.push(
             // <ListGroup.Item><Nav.Link href={`/quizs/${quizes[i].id}`}>{quizes[i].title}</Nav.Link></ListGroup.Item>
-          <Button style={quiz_button}  href={`/quizs/${asigned_quizes[i].id}`} variant="danger">{asigned_quizes[i].quiz_name}</Button>
+          <Button style={quiz_button}  href={`/quizs/${asigned_quizes[i].quiz_id}/asignedquiz/${asigned_quizes[i].id}`} variant="danger">{asigned_quizes[i].quiz_name}</Button>
           )
       }
     }

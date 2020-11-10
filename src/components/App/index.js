@@ -7,6 +7,7 @@ import Signup from '../Signup';
 import Signin from '../Signin';
 import Home from '../Home';
 import Quiz from '../Quiz';
+import Asignedquiz from '../Asignedquiz';
 import Question from '../Question';
 import Result from '../Result';
 import Admin from "../Admin";
@@ -56,6 +57,7 @@ class App extends React.Component {
             <Route exact path={ROUTES.SIGN_UP} component={Signup} />
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route exact path={"/quizs/:quiz_id"} component={Quiz} />
+            <Route exact path={ROUTES.ASIGNEDQUIZ} component={Asignedquiz} />
             <Route exact path={ROUTES.QUESTIONS} component={Question} />
             <Route exact path={ROUTES.RESULT} component={Result} />
             <Route exact path={ROUTES.ADMIN} component={Admin} />
