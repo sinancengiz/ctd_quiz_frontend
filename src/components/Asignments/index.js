@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
+import { Jumbotron, Button, Form, Col} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
 import { Redirect } from 'react-router-dom'
 import { instanceOf } from 'prop-types';
@@ -47,9 +47,13 @@ class Assignments extends React.Component {
       user: cookies.get('user'),
       users: [],
       quizes:[],
-      assignments:[]
+      assignments:[],
+      selected_quiz_id:null,
+      selected_student_id:null
     };
     
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -93,6 +97,24 @@ class Assignments extends React.Component {
     
   }
 
+
+  handleChange(event) { this.setState({ [event.target.name]: event.target.value });  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    const { selected_quiz_id, selected_student_id } = this.state;
+    const token = 'Bearer ' + this.state.user.auth_token;
+      // POST request using fetch with async/await
+      const requestOptions = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json',
+          Authorization: token
+        },
+          body: JSON.stringify({ quiz_name:"AAny quiz", user_id : selected_student_id, quiz_id:selected_quiz_id })
+      };
+      await fetch(`http://localhost:3000/api/v1/users/${selected_student_id}/asignedquizs`, requestOptions);
+
+  }
 
 
    render() {
@@ -142,12 +164,39 @@ class Assignments extends React.Component {
             return (
                         <div className={"main_class"}>
                         <Jumbotron style={main_jumbotron}>
-                            <h1>Hi {this.state.user ? this.state.user.username : "loading"}</h1>
-                            <h2>See all Users below</h2>
+                            <h1>Assignments Page</h1>
+                            <h2>Below You can assign assignments to students and see the unsubmited assignments</h2>
                         </Jumbotron>
+
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Row>
+                            <Form.Group as={Col} controlId="formGridState">
+                                <Form.Label>Quiz</Form.Label>
+                                <Form.Control as="select" defaultValue="Choose..." name="selected_quiz_id" onChange={this.handleChange} >
+                                  <option value={1}>HTML</option>
+                                  <option value={2}>CSS</option>
+                                  <option value={3}>SQL</option>
+                                  <option value={4}>Python</option>
+                                  <option value={5}>Javascript</option>
+                                </Form.Control>
+                              </Form.Group>
+
+                              <Form.Group as={Col} controlId="formGridState">
+                                <Form.Label>Student</Form.Label>
+                                <Form.Control as="select" defaultValue="Choose..." name="selected_student_id" onChange={this.handleChange} >
+                                  <option value={1} >Admin</option>
+                                  <option value={2}>Student1</option>
+                                </Form.Control>
+                              </Form.Group>
+
+                              <Button variant="primary" type="submit">
+                                Submit
+                              </Button>
+
+                            </Form.Row>
+                          </Form>
                         
                         <div style={user_secondary}>
-                        {show_users}
                         {assignments_list}
                         </div>
 
