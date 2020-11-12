@@ -103,6 +103,7 @@ class Admin extends React.Component {
                             <div>
                               <Button href={ROUTES.NEWQUIZ} variant="dark">Add New Quiz</Button>
                               <Button href={ROUTES.ALLUSERS} variant="dark">See Students</Button>
+                              <Button href={ROUTES.ASSIGNMENTS} variant="dark">Go to Assignemts</Button>
                             </div>
                         </Jumbotron>
                         

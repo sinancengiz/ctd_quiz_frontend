@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Jumbotron, Button, Form, Col} from 'react-bootstrap';
+import { Jumbotron, Button, Form, Col, Table} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
 import { Redirect } from 'react-router-dom'
 import { instanceOf } from 'prop-types';
@@ -24,12 +24,12 @@ const quiz_div = {
   textAlign:"center",
 };
 
-const user_secondary = {
-  display: "flex",
-  flexWrap: "wrap",
-  paddingLeft: "100px",
-  paddingRight: "100px",
-
+const form_style = {
+  paddingTop:"10%",
+  paddingLeft:"15%",
+  paddingRight:"15%",
+  paddingBottom:"10%",
+  backgroundColor:"lightblue",
 }
 
 
@@ -54,6 +54,7 @@ class Assignments extends React.Component {
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.search_name = this.search_name.bind(this);
   }
 
   async componentDidMount() {
@@ -95,14 +96,22 @@ class Assignments extends React.Component {
             .then(res => res.json())
             .then(json => this.setState({ assignments:json}));
     
-  }
 
+  }
+  search_name(id, user_list){
+        for (var i=0; i < user_list.length; i++) {
+            if (user_list[i].id == id) {
+                return user_list[i];
+            }
+        }
+    };
 
   handleChange(event) { this.setState({ [event.target.name]: event.target.value });  }
 
   async handleSubmit(event) {
     event.preventDefault();
     const { selected_quiz_id, selected_student_id } = this.state;
+    let current_quiz = await this.search_name(selected_quiz_id, this.state.quizes);
     const token = 'Bearer ' + this.state.user.auth_token;
       // POST request using fetch with async/await
       const requestOptions = {
@@ -110,10 +119,14 @@ class Assignments extends React.Component {
           headers: {'Content-Type': 'application/json',
           Authorization: token
         },
-          body: JSON.stringify({ quiz_name:"AAny quiz", user_id : selected_student_id, quiz_id:selected_quiz_id })
+          body: JSON.stringify({ quiz_name: current_quiz.title, user_id : selected_student_id, quiz_id:selected_quiz_id })
       };
       await fetch(`http://localhost:3000/api/v1/users/${selected_student_id}/asignedquizs`, requestOptions);
 
+
+      this.setState(prevState => ({
+        assignments: [...prevState.assignments, { quiz_name: current_quiz.title, user_id : selected_student_id, quiz_id:selected_quiz_id , created_at:"just now added"}]
+      }))
   }
 
 
@@ -143,13 +156,39 @@ class Assignments extends React.Component {
     let assignments_list = [];
     if (assignments.length > 0) {
       for (let i = 0; i < assignments.length; i++){
+
+        let current_user = this.search_name(assignments[i].user_id, this.state.users)
+        let current_quiz = this.search_name(assignments[i].quiz_id, this.state.quizes)
         assignments_list.push(
 
-                <div style={quiz_div}>
-                    <h1>{assignments[i].quiz_name}</h1>
-                    <h2>{assignments[i].quiz_id}</h2>
-                    <h2>{assignments[i].user_id}</h2>
-                </div>
+          <tr >
+          <td>{assignments[i].quiz_id}</td>
+          <td>{current_quiz.title}</td>
+          <td>{assignments[i].user_id}</td>
+          <td>{current_user.name}</td>
+          <td>{assignments[i].created_at}</td>
+          </tr>
+          )
+      }
+    }
+
+
+    let quiz_options = [];
+    let quizes = this.state.quizes;
+    if (quizes.length > 0) {
+      for (let i = 0; i < quizes.length; i++){
+        quiz_options.push(
+                <option value={parseInt(quizes[i].id)}>{quizes[i].title}</option>
+          )
+      }
+    }
+
+    let users_options = [];
+    let all_users = this.state.users;
+    if (all_users.length > 0) {
+      for (let i = 0; i < all_users.length; i++){
+        users_options.push(
+                <option value={parseInt(all_users[i].id)}>{all_users[i].name}</option>
           )
       }
     }
@@ -168,24 +207,19 @@ class Assignments extends React.Component {
                             <h2>Below You can assign assignments to students and see the unsubmited assignments</h2>
                         </Jumbotron>
 
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form style={form_style } onSubmit={this.handleSubmit}>
                             <Form.Row>
                             <Form.Group as={Col} controlId="formGridState">
                                 <Form.Label>Quiz</Form.Label>
                                 <Form.Control as="select" defaultValue="Choose..." name="selected_quiz_id" onChange={this.handleChange} >
-                                  <option value={1}>HTML</option>
-                                  <option value={2}>CSS</option>
-                                  <option value={3}>SQL</option>
-                                  <option value={4}>Python</option>
-                                  <option value={5}>Javascript</option>
+                                    {quiz_options}
                                 </Form.Control>
                               </Form.Group>
 
                               <Form.Group as={Col} controlId="formGridState">
                                 <Form.Label>Student</Form.Label>
                                 <Form.Control as="select" defaultValue="Choose..." name="selected_student_id" onChange={this.handleChange} >
-                                  <option value={1} >Admin</option>
-                                  <option value={2}>Student1</option>
+                                    {users_options}
                                 </Form.Control>
                               </Form.Group>
 
@@ -195,14 +229,23 @@ class Assignments extends React.Component {
 
                             </Form.Row>
                           </Form>
-                        
-                        <div style={user_secondary}>
-                        {assignments_list}
-                        </div>
 
 
-                       
-                    </div>
+                          <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                <th>Quiz ID</th>
+                                <th>Quiz Name</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {assignments_list}
+                            </tbody>
+                            </Table>
+                </div>
                 );
         }}
       </UserConsumer>
