@@ -30,6 +30,13 @@ const form_style = {
   paddingRight:"15%",
   paddingBottom:"10%",
   backgroundColor:"lightblue",
+  margin:"10%",
+  width:"80%"
+}
+
+const table_style = {
+  margin:"10%",
+  width:"80%"
 }
 
 
@@ -231,7 +238,7 @@ class Assignments extends React.Component {
                           </Form>
 
 
-                          <Table striped bordered hover>
+                          <Table style={table_style}  striped bordered hover>
                             <thead>
                                 <tr>
                                 <th>Quiz ID</th>
