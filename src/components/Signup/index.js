@@ -28,6 +28,7 @@ class Signup extends React.Component {
           email:"",
           password:"",
           password_confirmation:"",  
+          error:null
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -48,15 +49,23 @@ class Signup extends React.Component {
         };
         const response = await fetch('http://localhost:3000/signup', requestOptions);
         const data = await response.json();
-  
-        this.props.history.push(ROUTES.SIGN_IN);
+        if(data.auth_token){
+          this.props.history.push(ROUTES.SIGN_IN);
+        }else{
+          this.setState({error:data.message})
+        }
+        
+        
     }
 
   render() {
 
     return (
             <div style={main_div}>
+              
                 <Form style={form_style }onSubmit={this.handleSubmit} >
+                {this.state.error}
+                <br></br>
                 <Form.Label>Signup Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control required type="text" placeholder="Username" name="name" onChange={this.handleChange}/>
