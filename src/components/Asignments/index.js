@@ -55,8 +55,8 @@ class Assignments extends React.Component {
       users: [],
       quizes:[],
       assignments:[],
-      selected_quiz_id:null,
-      selected_student_id:null
+      selected_quiz_id:1,
+      selected_student_id:1
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -126,10 +126,9 @@ class Assignments extends React.Component {
           headers: {'Content-Type': 'application/json',
           Authorization: token
         },
-          body: JSON.stringify({ quiz_name: current_quiz.title, user_id : selected_student_id, quiz_id:selected_quiz_id })
+          body: JSON.stringify({ quiz_name: current_quiz.title, user_id: selected_student_id, quiz_id:selected_quiz_id })
       };
       await fetch(`http://localhost:3000/api/v1/users/${selected_student_id}/asignedquizs`, requestOptions);
-
 
       this.setState(prevState => ({
         assignments: [...prevState.assignments, { quiz_name: current_quiz.title, user_id : selected_student_id, quiz_id:selected_quiz_id , created_at:"just now added"}]
@@ -194,6 +193,7 @@ class Assignments extends React.Component {
     let all_users = this.state.users;
     if (all_users.length > 0) {
       for (let i = 0; i < all_users.length; i++){
+        
         users_options.push(
                 <option value={parseInt(all_users[i].id)}>{all_users[i].name}</option>
           )
@@ -218,14 +218,14 @@ class Assignments extends React.Component {
                             <Form.Row>
                             <Form.Group as={Col} controlId="formGridState">
                                 <Form.Label>Quiz</Form.Label>
-                                <Form.Control as="select" defaultValue="Choose..." name="selected_quiz_id" onChange={this.handleChange} >
+                                <Form.Control as="select" name="selected_quiz_id" onChange={this.handleChange} >
                                     {quiz_options}
                                 </Form.Control>
                               </Form.Group>
 
                               <Form.Group as={Col} controlId="formGridState">
                                 <Form.Label>Student</Form.Label>
-                                <Form.Control as="select" defaultValue="Choose..." name="selected_student_id" onChange={this.handleChange} >
+                                <Form.Control as="select"  name="selected_student_id" onChange={this.handleChange} >
                                     {users_options}
                                 </Form.Control>
                               </Form.Group>
