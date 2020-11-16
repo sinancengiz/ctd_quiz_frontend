@@ -34,7 +34,7 @@ class Quiz extends React.Component {
 
   componentDidMount() {
 
-    var url = `http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}`;
+    var url = `https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.props.match.params.quiz_id}`;
     const token = 'Bearer ' + this.state.user.auth_token;
     fetch(url, {
       headers: {

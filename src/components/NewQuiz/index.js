@@ -51,7 +51,7 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ title: title, description:description })
     };
-    fetch('http://localhost:3000/api/v1/quizs', requestOptions);
+    fetch('https://glacial-caverns-68634.herokuapp.com/api/v1/quizs', requestOptions);
 
     this.props.history.push(ROUTES.ADMIN);
 }

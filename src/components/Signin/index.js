@@ -61,7 +61,7 @@ async handleSubmit(event) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password:password })
     };
-    const response = await fetch('http://localhost:3000/auth/login', requestOptions);
+    const response = await fetch('https://glacial-caverns-68634.herokuapp.com/auth/login', requestOptions);
     const data = await response.json();
     if(data.auth_token){
         this.setState({

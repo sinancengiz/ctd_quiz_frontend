@@ -47,7 +47,7 @@ class Question extends React.Component {
 
   async componentDidMount() {
     const token = 'Bearer ' + this.state.user.auth_token;
-    const response = await fetch(`http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}/questions`, {
+    const response = await fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.props.match.params.quiz_id}/questions`, {
               headers: {
                 Authorization: token
               }
@@ -55,7 +55,7 @@ class Question extends React.Component {
     const json = await response.json();
     this.setState({ questions: json });
 
-    const quiz_response = await fetch(`http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}`, {
+    const quiz_response = await fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.props.match.params.quiz_id}`, {
           headers: {
             Authorization: token
           }
@@ -139,7 +139,7 @@ handleFinishClicked(){
     this.setState({quiz_finished:true})
 
     const { user, quiz_score, quiz } = this.state;
-    var post_result_url = `http://localhost:3000/api/v1/users/${user.user_id}/results`;
+    var post_result_url = `https://glacial-caverns-68634.herokuapp.com/api/v1/users/${user.user_id}/results`;
     const token = 'Bearer ' + this.state.user.auth_token;
     // POST request using fetch 
     const requestOptions = {

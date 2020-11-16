@@ -50,7 +50,7 @@ class Admin extends React.Component {
       )
   }
 
-    var url = "http://localhost:3000/api/v1/quizs";
+    var url = "https://glacial-caverns-68634.herokuapp.com/api/v1/quizs";
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {

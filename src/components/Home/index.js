@@ -52,7 +52,7 @@ class Home extends React.Component {
       )
   }
 
-    var url = "http://localhost:3000/api/v1/quizs";
+    var url = "https://glacial-caverns-68634.herokuapp.com/api/v1/quizs";
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -63,7 +63,7 @@ class Home extends React.Component {
       .then(json => this.setState({ quizes:json }));
     
 
-      var asigned_quizes_url = `http://localhost:3000/api/v1/users/${this.state.user.user_id}/asignedquizs`;
+      var asigned_quizes_url = `https://glacial-caverns-68634.herokuapp.com/api/v1/users/${this.state.user.user_id}/asignedquizs`;
       await fetch(asigned_quizes_url, {
         headers: {
           Authorization: token

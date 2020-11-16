@@ -72,7 +72,7 @@ class Assignments extends React.Component {
       )
   }
 
-    var url = "http://localhost:3000/api/v1/users";
+    var url = "https://glacial-caverns-68634.herokuapp.com/api/v1/users";
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -83,7 +83,7 @@ class Assignments extends React.Component {
       .then(json => this.setState({ users:json}));
 
 
-      var quizes_url = "http://localhost:3000/api/v1/quizs";
+      var quizes_url = "https://glacial-caverns-68634.herokuapp.com/api/v1/quizs";
     //   const token = 'Bearer ' + this.state.user.auth_token;
       await fetch(quizes_url, {
         headers: {
@@ -93,7 +93,7 @@ class Assignments extends React.Component {
         .then(res => res.json())
         .then(json => this.setState({ quizes:json}));
 
-        var assignments_url = "http://localhost:3000/api/v1/assignments";
+        var assignments_url = "https://glacial-caverns-68634.herokuapp.com/api/v1/assignments";
         //   const token = 'Bearer ' + this.state.user.auth_token;
             await fetch(assignments_url, {
             headers: {
@@ -128,7 +128,7 @@ class Assignments extends React.Component {
         },
           body: JSON.stringify({ quiz_name: current_quiz.title, user_id: selected_student_id, quiz_id:selected_quiz_id })
       };
-      await fetch(`http://localhost:3000/api/v1/users/${selected_student_id}/asignedquizs`, requestOptions);
+      await fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/users/${selected_student_id}/asignedquizs`, requestOptions);
 
       this.setState(prevState => ({
         assignments: [...prevState.assignments, { quiz_name: current_quiz.title, user_id : selected_student_id, quiz_id:selected_quiz_id , created_at:"just now added"}]

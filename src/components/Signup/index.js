@@ -47,7 +47,7 @@ class Signup extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name:name, email: email, password:password, password_confirmation: password_confirmation})
         };
-        const response = await fetch('http://localhost:3000/signup', requestOptions);
+        const response = await fetch('https://glacial-caverns-68634.herokuapp.com/signup', requestOptions);
         const data = await response.json();
         if(data.auth_token){
           this.props.history.push(ROUTES.SIGN_IN);

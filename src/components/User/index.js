@@ -58,7 +58,7 @@ class User extends React.Component {
  
   async componentDidMount() {
     console.log(this.state.user_id)
-    var url = `http://localhost:3000/api/v1/users/${this.state.user_id}`;
+    var url = `https://glacial-caverns-68634.herokuapp.com/api/v1/users/${this.state.user_id}`;
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -69,7 +69,7 @@ class User extends React.Component {
       .then(json => this.setState({ user_info:json}));
 
 
-      var user_results_url = `http://localhost:3000/api/v1/users/${this.state.user_id}/results`;
+      var user_results_url = `https://glacial-caverns-68634.herokuapp.com/api/v1/users/${this.state.user_id}/results`;
       await fetch(user_results_url, {
         headers: {
           Authorization: token
@@ -78,7 +78,7 @@ class User extends React.Component {
         .then(res => res.json())
         .then(json => this.setState({ user_test_results:json}));
 
-      var max_results_url = `http://localhost:3000/api/v1/users/${this.state.user_id}/maxresults`;
+      var max_results_url = `https://glacial-caverns-68634.herokuapp.com/api/v1/users/${this.state.user_id}/maxresults`;
       await fetch(max_results_url, {
         headers: {
           Authorization: token
@@ -105,7 +105,7 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ title: title, description:description })
     };
-    fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+    fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
 
     this.props.history.push(ROUTES.ADMIN);
 }
@@ -119,7 +119,7 @@ handleDelete(id){
                 Authorization: token
             }
         };
-        fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+        fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
    
         this.props.history.push(ROUTES.ADMIN);
   }

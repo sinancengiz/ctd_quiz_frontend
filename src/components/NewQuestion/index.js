@@ -54,7 +54,7 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ question: question, correct_answer:correct_answer ,answer_1:answer_1, answer_2:answer_2, answer_3:answer_3, answer_4:answer_4, quiz_id:this.props.match.params.quiz_id})
     };
-    fetch(`http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}/questions`, requestOptions);
+    fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.props.match.params.quiz_id}/questions`, requestOptions);
 
     this.props.history.push(`/quizs/${this.props.match.params.quiz_id}/edit`);
 }

@@ -43,7 +43,7 @@ class EditQuestion extends React.Component {
  
   async componentDidMount() {
     console.log(this.state.quiz_id)
-    var url = `http://localhost:3000/api/v1/quizs/${this.props.match.params.quiz_id}/questions/${this.props.match.params.question_id}`;
+    var url = `https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.props.match.params.quiz_id}/questions/${this.props.match.params.question_id}`;
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -77,7 +77,7 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ question:question, correct_answer:correct_answer, answer_1:answer_1, answer_2:answer_2, answer_3: answer_3, answer_4:answer_4, quiz_id: quiz_id })
     };
-    fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}/questions/${this.state.current_question.id}`, requestOptions);
+    fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}/questions/${this.state.current_question.id}`, requestOptions);
 
     this.props.history.push(`/quizs/${this.state.quiz_id}/edit`);
 }
@@ -91,7 +91,7 @@ handleDelete(id){
                 Authorization: token
             }
         };
-        fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}/questions/${this.state.current_question.id}`, requestOptions);
+        fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}/questions/${this.state.current_question.id}`, requestOptions);
    
         this.props.history.push(`/quizs/${this.state.quiz_id}/edit`);
   }

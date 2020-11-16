@@ -50,7 +50,7 @@ class EditQuiz extends React.Component {
  
   async componentDidMount() {
     console.log(this.state.quiz_id)
-    var url = `http://localhost:3000/api/v1/quizs/${this.state.quiz_id}`;
+    var url = `https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`;
     const token = 'Bearer ' + this.state.user.auth_token;
     await fetch(url, {
       headers: {
@@ -61,7 +61,7 @@ class EditQuiz extends React.Component {
       .then(json => this.setState({ quiz:json, title:json.title, description:json.description}));
 
 
-      var questions_url = `http://localhost:3000/api/v1/quizs/${this.state.quiz_id}/questions`;
+      var questions_url = `https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}/questions`;
       await fetch(questions_url, {
         headers: {
           Authorization: token
@@ -88,7 +88,7 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ title: title, description:description })
     };
-    fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+    fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
 
     this.props.history.push(ROUTES.ADMIN);
 }
@@ -102,7 +102,7 @@ handleDelete(id){
                 Authorization: token
             }
         };
-        fetch(`http://localhost:3000/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+        fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
    
         this.props.history.push(ROUTES.ADMIN);
   }
