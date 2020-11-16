@@ -20,7 +20,8 @@ const landing_jumbotron = {
 const quiz_button = {
   margin:"10px",
   width:"250px",
-  hieght:"250px",
+  height:"200px",
+  paddingTop:"80px"
 }
 
 const asigned_quiz_div_style = {
@@ -123,7 +124,7 @@ class Home extends React.Component {
     let admin_button = [];
     if (user.role == "ADMIN") {
         admin_button.push(
-            <Button href={ROUTES.ADMIN}> You are an Admin Go to Admin Page</Button>
+            <Button href={ROUTES.ADMIN} variant="outline-danger"> You are an Admin Go to Admin Page</Button>
           )
     }
 
