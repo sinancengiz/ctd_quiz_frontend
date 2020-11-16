@@ -1,6 +1,5 @@
 import React from 'react';
-import * as ROUTES from '../../constants/routes';
-import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
+import { Jumbotron, Button} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
 
 import { instanceOf } from 'prop-types';
@@ -16,12 +15,6 @@ const landing_jumbotron = {
   textAlign:"center",
   padding:"150px"
 };
-
-const quiz_button = {
-  margin:"10px",
-  width:"250px",
-  hieght:"250px",
-}
 
 class Quiz extends React.Component {
 

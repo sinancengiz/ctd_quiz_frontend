@@ -1,7 +1,4 @@
 import React from 'react';
-import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
-import {UserConsumer} from '../Context'
-
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 

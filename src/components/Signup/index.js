@@ -64,7 +64,7 @@ class Signup extends React.Component {
             <div style={main_div}>
               
                 <Form style={form_style }onSubmit={this.handleSubmit} >
-                {this.state.error}
+                <h2 style={{color:"red"}}>{this.state.error}</h2>
                 <br></br>
                 <Form.Label>Signup Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">

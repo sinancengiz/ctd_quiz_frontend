@@ -1,6 +1,5 @@
 import React from 'react';
-import * as ROUTES from '../../constants/routes';
-import { Jumbotron, Button, Nav, ListGroup} from 'react-bootstrap';
+import { Jumbotron, Button} from 'react-bootstrap';
 import {UserConsumer} from '../Context'
 import { Redirect } from 'react-router-dom'
 import { instanceOf } from 'prop-types';

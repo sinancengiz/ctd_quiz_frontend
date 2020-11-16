@@ -1,5 +1,4 @@
 import React from 'react';
-import * as ROUTES from '../../constants/routes';
 import { Form, Button} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
@@ -35,6 +34,7 @@ class Signin extends React.Component {
       auth_token:"",
       email:"",
       password:"",
+      error:null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -63,13 +63,22 @@ async handleSubmit(event) {
     };
     const response = await fetch('http://localhost:3000/auth/login', requestOptions);
     const data = await response.json();
-    this.setState({
-      auth_token: data.auth_token,
+    if(data.auth_token){
+        this.setState({
+          auth_token: data.auth_token,
+        });
+      this.handleUserChange(data)
+      this.props.history.push('/home');
+    }else{
+      this.setState({error:data.message})
+    }
+  //   this.setState({
+  //     auth_token: data.auth_token,
       
-    });
+  //   });
 
-  this.handleUserChange(data)
-  this.props.history.push('/home');
+  // this.handleUserChange(data)
+  // this.props.history.push('/home');
 }
 
 
@@ -77,8 +86,10 @@ async handleSubmit(event) {
 
     return (
             <div style={main_div}>
-              
+    
                 <Form  style={form_style } onSubmit={this.handleSubmit} >
+                <h2 style={{color:"red"}}>{this.state.error}</h2>
+                <br></br>
                 <Form.Label>Login Form</Form.Label>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control required type="email" placeholder="Your Email" name="email" onChange={this.handleChange} />

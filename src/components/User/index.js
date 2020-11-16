@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import {  Button, Table, Jumbotron, Container, Row, Col} from 'react-bootstrap';
+import { Table, Jumbotron, Container, Row, Col} from 'react-bootstrap';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom'
@@ -9,15 +9,6 @@ import Plotly from "plotly.js";
 
 import createPlotlyComponent from "react-plotly.js/factory";
 const Plot = createPlotlyComponent(Plotly);
-
-const form_style = {
-  paddingTop:"5%",
-  paddingLeft:"15%",
-  paddingRight:"15%",
-  paddingBottom:"5%",
-  backgroundColor:"lightblue",
-  marginBottom:"5%"
-};
 
 const questions_div = {
   paddingTop:"5%",
