@@ -27,7 +27,7 @@ class Chart extends React.Component {
             }
           ]}
           
-          layout = {{ width: 600, height: 300 }}
+          layout = {{ width: 300, height: 300 }}
 
         />
         </Col>

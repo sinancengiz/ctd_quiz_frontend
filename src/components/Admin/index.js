@@ -100,11 +100,11 @@ class Admin extends React.Component {
                         <div className={"main_class"}>
                         <Jumbotron style={main_jumbotron}>
                             <h1>Hi {this.state.user ? this.state.user.username : "loading"}</h1>
-                            <h2>In this Admin page you can add new quizes and update them!</h2>
+                            <h2>In this Admin page you can manage quizes, students and assignments!</h2>
                             <div>
                               <Button style={{color:"green",margin:"2%"}} href={ROUTES.NEWQUIZ} variant="dark">Add New Quiz</Button>
                               <Button style={{color:"yellow",margin:"2%"}} href={ROUTES.ALLUSERS} variant="dark">See Students</Button>
-                              <Button style={{color:"orange",margin:"2%"}} href={ROUTES.ASSIGNMENTS} variant="dark">Go to Assignemts</Button>
+                              <Button style={{color:"orange",margin:"2%"}} href={ROUTES.ASSIGNMENTS} variant="dark">Go to Assignments</Button>
                             </div>
                         </Jumbotron>
                         

@@ -192,10 +192,10 @@ handleFinishClicked(){
 
                           {current_question }
                           <Row>
-                            <Col xs={11}>
+                            <Col xs={11} >
                             
                             </Col>
-                            <Col xs={1}>
+                            <Col xs={1} >
                             { this.state.questions.length == this.state.current_q_index +1 ?
                               <Button onClick={this.handleFinishClicked} variant="danger" >Finish</Button>
                               :

@@ -29,7 +29,7 @@ class Landing extends React.Component {
                 <Jumbotron style={landing_jumbotron}>
                     <h1>CTD Quiz App</h1>
                     <p>
-                        Code The Dream Quiz App is designed to help students to test thier knowledge!
+                        Code The Dream Quiz App is designed to help students to test their knowledge!
                     </p>
                     <p>
                         <Button style={landing_button} href={ROUTES.SIGN_IN} variant="dark">Sign In</Button>

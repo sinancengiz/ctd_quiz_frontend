@@ -25,14 +25,6 @@ class Answer extends React.Component {
 
   onAnswerClicked(){
     this.props.handleAnswerClicked(this.props.answer,this.props.c_answer, this.props.id)
-    // if(this.props.answer_clicked == false){
-    //     if(this.props.answer == this.props.c_answer){
-    //         this.setState({answer_style:"correct_answer"})
-    //     }
-    //     else{
-    //         this.setState({answer_style:"wrong_answer"})
-    //     }
-    // }
 
   }
 

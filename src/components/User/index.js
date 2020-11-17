@@ -162,7 +162,7 @@ handleDelete(id){
                             data={[
                                 {type: 'bar', x: Object.keys(this.state.max_test_results), y: Object.values(this.state.max_test_results)},
                             ]}
-                            layout={ {width: 1000, height: 500, title: 'Max Quiz Scores'} }
+                            layout={ { width: 1000, height: 500, title: 'Max Quiz Scores'} }
                           />
                       </Col>
                     
