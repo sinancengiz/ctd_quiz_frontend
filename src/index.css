@@ -65,6 +65,6 @@ code {
 .quizes_main_div{
   display: flex;
   flex-wrap: wrap;
-  padding-left: 100px;
-  padding-right: 100px;
+  /* padding-left: 100px;
+  padding-right: 100px; */
 }

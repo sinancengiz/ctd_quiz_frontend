@@ -8,13 +8,13 @@ import { withCookies, Cookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom'
 
 const landing_jumbotron = {
-  
-  // backgroundImage: `url(${sun_image})`,
   backgroundColor:"lightblue",
   marginTop: "50px",
   color:"white",
+  minHeight: '600px',
   textAlign:"center",
-  padding:"150px"
+  paddingTop: '200px',
+  paddingBottom:"200px",
 };
 
 const quiz_button = {
@@ -148,7 +148,10 @@ class Home extends React.Component {
                         </Jumbotron>
                             
                             {asigned_quiz_div}
+                            <Container style={asigned_quiz_div_style}>
                             {show_quizes}
+                            </Container>
+                            
 
                         
                     </div>

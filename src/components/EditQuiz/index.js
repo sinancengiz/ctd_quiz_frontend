@@ -88,12 +88,12 @@ async handleSubmit(event) {
           },
         body: JSON.stringify({ title: title, description:description })
     };
-    fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+    await fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
 
     this.props.history.push(ROUTES.ADMIN);
 }
 
-handleDelete(id){
+async handleDelete(id){
     const token = 'Bearer ' + this.state.user.auth_token;
         // POST request using fetch with async/await
         const requestOptions = {
@@ -102,7 +102,7 @@ handleDelete(id){
                 Authorization: token
             }
         };
-        fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
+        await fetch(`https://glacial-caverns-68634.herokuapp.com/api/v1/quizs/${this.state.quiz_id}`, requestOptions);
    
         this.props.history.push(ROUTES.ADMIN);
   }

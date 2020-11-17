@@ -153,7 +153,7 @@ handleDelete(id){
               <Jumbotron style={main_jumbotron}>
                 <h2>{this.state.user_info.id}</h2>
                 <h1>{this.state.user_info.name}</h1>
-                <h2>{this.state.user_info.email}</h2>
+                <p>{this.state.user_info.email}</p>
               </Jumbotron>
               <Container>
                     <Row>

@@ -8,9 +8,11 @@ const landing_jumbotron = {
   backgroundColor:"lightblue",
   marginTop: "50px",
   color:"white",
-  height:"600px",
+  minHeight: '600px',
   textAlign:"center",
-  padding:"200px"
+  paddingTop: '200px',
+  paddingBottom:"200px",
+
 };
 
 const landing_button = {

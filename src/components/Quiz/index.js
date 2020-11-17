@@ -6,14 +6,13 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
 const landing_jumbotron = {
-  
-  // backgroundImage: `url(${sun_image})`,
   backgroundColor:"lightblue",
   marginTop: "50px",
   color:"white",
-  height:"400px",
+  minHeight: '600px',
   textAlign:"center",
-  padding:"150px"
+  paddingTop: '200px',
+  paddingBottom:"200px",
 };
 
 class Quiz extends React.Component {

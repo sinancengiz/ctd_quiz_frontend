@@ -230,7 +230,7 @@ class Assignments extends React.Component {
                                 </Form.Control>
                               </Form.Group>
 
-                              <Button variant="primary" type="submit">
+                              <Button variant="primary" type="submit" style={{maxHeight:"60px",marginTop:"20px"}}>
                                 Submit
                               </Button>
 

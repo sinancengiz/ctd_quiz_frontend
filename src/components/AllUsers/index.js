@@ -16,7 +16,8 @@ const main_jumbotron = {
 
 const quiz_div = {
   backgroundColor:"yellowgreen",
-  width:"300px",
+  width:"280px",
+  minWidth:"280px",
   borderRadius:"10px",
   padding:"20px",
   margin:"20px",
@@ -26,9 +27,7 @@ const quiz_div = {
 const user_secondary = {
   display: "flex",
   flexWrap: "wrap",
-  paddingLeft: "100px",
-  paddingRight: "100px",
-
+  textAlign:"center",
 }
 
 
