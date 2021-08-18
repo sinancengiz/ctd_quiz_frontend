@@ -9,8 +9,6 @@ Any background information/context for the changes in the PR? (don't just copy t
 We decided have Route table and route location join table , instead of having that fields in group. this pr is creating route table and rout_location join table 
 
 ## Screenshots
-![Screenshot from 2021-08-17 15-44-53](https://user-images.githubusercontent.com/27401425/129810778-bd4487e2-cbd8-41fd-bde0-842eb7dce5b7.png)
-![Screenshot from 2021-08-17 15-44-46](https://user-images.githubusercontent.com/27401425/129810780-cf0056a2-9340-4072-85d3-291204b8a944.png)
 
 ## Checklist:
 - [x] Screenshots attached (if dealing with UI)
@@ -18,7 +16,14 @@ We decided have Route table and route location join table , instead of having th
 - [x] Make sure all CI Tests are passing
 - [x] Removed extraneous `byebug`s
 
-<details><summary>Reviewer checklist</summary><ul><li>- [x] Screenshots attached (if dealing with UI)</li><li- [x] Unit Tests (if applicable)</li><li>Verified requirements are met</li><li>Reviewed the code</li></ul></details>
+<details><summary>Reviewer checklist</summary>
+  <ul>
+    <li> - [x] Screenshots attached (if dealing with UI)</li>
+    <li> - [x] Unit Tests (if applicable)</li>
+    <li> - [x] Make sure all CI Tests are passing</li>
+    <li> - [x] Removed extraneous `byebug`s </li>
+  </ul>
+</details>
 
 ## Testing Steps for reviewer:
 - Step 1 pull the  branch 
