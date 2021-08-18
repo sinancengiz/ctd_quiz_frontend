@@ -10,13 +10,7 @@ We decided have Route table and route location join table , instead of having th
 
 ## Screenshots
 
-## Checklist:
-- [x] Screenshots attached (if dealing with UI)
-- [x] Unit Tests (if applicable)
-- [x] Make sure all CI Tests are passing
-- [x] Removed extraneous `byebug`s
-
-<details><summary>Reviewer checklist</summary>
+<details><summary> ## Reviewer checklist</summary>
   <ul>
     <li> - [x] Screenshots attached (if dealing with UI)</li>
     <li> - [x] Unit Tests (if applicable)</li>
