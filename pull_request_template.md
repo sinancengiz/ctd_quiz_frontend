@@ -7,7 +7,7 @@ Any background information/context for the changes in the PR? (don't just copy t
 ## Screenshots
 
 ## Checklist:
-- [ ] Removed extraneous `byebug`s
+- [x] Removed extraneous `byebug`s
 - [ ] Screenshots attached (if dealing with UI)
 - [ ] Unit Tests (if applicable)
 - [ ] Make sure all CI Tests are passing
