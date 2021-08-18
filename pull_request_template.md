@@ -12,6 +12,8 @@ Any background information/context for the changes in the PR? (don't just copy t
 - [ ] Unit Tests (if applicable)
 - [ ] Make sure all CI Tests are passing
 
+<details><summary>Reviewer checklist</summary><ul><li>Read PR description and User Story</li><li>Pulled branch, manually tested</li><li>Verified requirements are met</li><li>Reviewed the code</li></ul></details>
+
 ## Testing Steps for reviewer:
 - Step 1
 - Step 2
