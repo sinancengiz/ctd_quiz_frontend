@@ -18,6 +18,8 @@ We decided have Route table and route location join table , instead of having th
 - [x] Make sure all CI Tests are passing
 - [x] Removed extraneous `byebug`s
 
+<details><summary>Reviewer checklist</summary><ul><li>- [x] Screenshots attached (if dealing with UI)</li><li- [x] Unit Tests (if applicable)</li><li>Verified requirements are met</li><li>Reviewed the code</li></ul></details>
+
 ## Testing Steps for reviewer:
 - Step 1 pull the  branch 
 - Step 2 in console create new route and locations and make relation between them
