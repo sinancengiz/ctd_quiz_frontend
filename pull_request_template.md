@@ -10,7 +10,7 @@ We decided have Route table and route location join table , instead of having th
 
 ## Screenshots
 
-<details><summary> ## Reviewer checklist</summary>
+<details><summary> [ ] Reviewer checklist</summary>
   <ul>
     <li> - [x] Screenshots attached (if dealing with UI)</li>
     <li> - [x] Unit Tests (if applicable)</li>
