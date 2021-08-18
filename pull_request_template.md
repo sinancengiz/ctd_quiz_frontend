@@ -14,10 +14,10 @@ Any background information/context for the changes in the PR? (don't just copy t
 
 <details><summary>Reviewer checklist</summary>
   <ul>
-    <li>Read PR description and User Story</li>
-    <li>Pulled branch, manually tested</li>
-    <li>Verified requirements are met</li>
-    <li>Reviewed the code</li>
+    <li>[ ] Removed extraneous `byebug`s</li>
+    <li>[ ] Screenshots attached (if dealing with UI)</li>
+    <li>[ ] Unit Tests (if applicable)</li>
+    <li>[ ] Make sure all CI Tests are passing</li>
   </ul>
 </details>
 
