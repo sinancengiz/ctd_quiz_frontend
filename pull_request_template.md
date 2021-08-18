@@ -6,7 +6,13 @@ Any background information/context for the changes in the PR? (don't just copy t
 
 ## Screenshots
 
-<details><summary>Reviewer checklist</summary>
+## Checklist:
+- [ ] Removed extraneous `byebug`s
+- [ ] Screenshots attached (if dealing with UI)
+- [ ] Unit Tests (if applicable)
+- [ ] Make sure all CI Tests are passing
+
+<details><summary> ## Reviewer checklist</summary>
   <ul>
     <li>[ ] Removed extraneous `byebug`s</li>
     <li>[ ] Screenshots attached (if dealing with UI)</li>
