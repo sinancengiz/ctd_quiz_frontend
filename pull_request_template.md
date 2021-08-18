@@ -13,6 +13,7 @@ We decided have Route table and route location join table , instead of having th
 ![Screenshot from 2021-08-17 15-44-46](https://user-images.githubusercontent.com/27401425/129810780-cf0056a2-9340-4072-85d3-291204b8a944.png)
 
 ## Checklist:
+- [ ] sinan
 - [x] Screenshots attached (if dealing with UI)
 - [x] Unit Tests (if applicable)
 - [x] Make sure all CI Tests are passing
