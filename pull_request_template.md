@@ -14,8 +14,8 @@ We decided have Route table and route location join table , instead of having th
   <ul>
     <li> - [x] Screenshots attached (if dealing with UI)</li>
     <li> - [x] Unit Tests (if applicable)</li>
-    <li> - [x] Make sure all CI Tests are passing</li>
-    <li> - [x] Removed extraneous `byebug`s </li>
+    <li>  Make sure all CI Tests are passing</li>
+    <li>  Removed extraneous `byebug`s </li>
   </ul>
 </details>
 
