@@ -1,16 +1,9 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was designed to make CTD student to be able to practice thier programing knowledge 
 
 ## Available Scripts
 
-In the project directory, you can run:
+Here is the link https://hopeful-hawking-1c8973.netlify.app/ to application , when first registering or login  please give 30 sec because I used a free Heroku account to host backend, thanks 
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
